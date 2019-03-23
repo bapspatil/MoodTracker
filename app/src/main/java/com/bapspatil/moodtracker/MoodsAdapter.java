@@ -47,7 +47,7 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
                 moodViewHolder.daysTextView.setText(R.string.today);
                 break;
             default:
-                String daysAgoText = (i+1) + " " + mContext.getString(R.string.days_ago);
+                String daysAgoText = i + " " + mContext.getString(R.string.days_ago);
                 moodViewHolder.daysTextView.setText(daysAgoText);
         }
 
@@ -90,7 +90,7 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
                 }
             });
         } else {
-            moodViewHolder.commentButton.setVisibility(View.GONE);
+            moodViewHolder.commentButton.setVisibility(View.INVISIBLE);
         }
     }
 

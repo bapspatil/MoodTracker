@@ -28,8 +28,7 @@ public class MoodHistoryActivity extends AppCompatActivity {
         currentDay = mPreferences.getInt(SharedPreferencesHelper.KEY_CURRENT_DAY, 1);
 
         moodsRecyclerView = findViewById(R.id.rv_moods);
-        moodsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        moodsRecyclerView.setHasFixedSize(true);
+        moodsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         for (int i = 0; i < currentDay; i++) {
             moods.add(mPreferences.getInt("KEY_MOOD" + i, 3));
