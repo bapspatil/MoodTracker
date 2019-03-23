@@ -9,18 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHolder> {
     private Context mContext;
     private int mCurrentDay;
-    private int[] mMoods;
-    private String[] mComments;
+    private ArrayList<Integer> mMoods;
+    private ArrayList<String> mComments;
 
-    public MoodsAdapter(Context context, int currentDay, int[] moods, String[] comments) {
+    public MoodsAdapter(Context context, int currentDay, ArrayList<Integer> moods, ArrayList<String> comments) {
         this.mContext = context;
         this.mCurrentDay = currentDay;
         this.mMoods = moods;
@@ -37,19 +40,20 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
     @Override
     public void onBindViewHolder(@NonNull MoodViewHolder moodViewHolder, int i) {
         switch (i) {
-            case 5:
+            case 1:
                 moodViewHolder.daysTextView.setText(R.string.yesterday);
                 break;
-            case 6:
+            case 0:
                 moodViewHolder.daysTextView.setText(R.string.today);
                 break;
             default:
-                String daysAgoText = i + mContext.getString(R.string.days_ago);
+                String daysAgoText = (i+1) + " " + mContext.getString(R.string.days_ago);
                 moodViewHolder.daysTextView.setText(daysAgoText);
         }
 
-        int mood = mMoods[i];
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int mood = mMoods.get(i);
+        LinearLayout.LayoutParams leftLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams rightLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         float weight;
         switch (mood) {
             case 0:
@@ -70,11 +74,13 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
             default:
                 weight = 0.8f;
         }
-        layoutParams.weight = weight;
-        moodViewHolder.parentLinearLayout.setLayoutParams(layoutParams);
-        moodViewHolder.parentLinearLayout.setBackgroundResource(Constants.moodColorsArray[mood]);
+        leftLayoutParams.weight = weight;
+        rightLayoutParams.weight = 1.0f - weight;
+        moodViewHolder.leftFrameLayout.setLayoutParams(leftLayoutParams);
+        moodViewHolder.rightFrameLayout.setLayoutParams(rightLayoutParams);
+        moodViewHolder.leftFrameLayout.setBackgroundResource(Constants.moodColorsArray[mood]);
 
-        final String comment = mComments[i];
+        final String comment = mComments.get(i);
         if (comment != null && !comment.isEmpty()) {
             moodViewHolder.commentButton.setVisibility(View.VISIBLE);
             moodViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
@@ -90,18 +96,20 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
 
     @Override
     public int getItemCount() {
-        return mMoods.length;
+        return mMoods.size();
     }
 
     public class MoodViewHolder extends RecyclerView.ViewHolder {
-        private LinearLayout parentLinearLayout;
+        private FrameLayout leftFrameLayout;
+        private FrameLayout rightFrameLayout;
         private ImageButton commentButton;
         private TextView daysTextView;
 
         public MoodViewHolder(View itemView) {
             super(itemView);
 
-            parentLinearLayout = itemView.findViewById(R.id.parent_linear_layout);
+            leftFrameLayout = itemView.findViewById(R.id.left_frame_layout);
+            rightFrameLayout = itemView.findViewById(R.id.right_frame_layout);
             commentButton = itemView.findViewById(R.id.btn_show_comment);
             daysTextView = itemView.findViewById(R.id.tv_days);
         }
