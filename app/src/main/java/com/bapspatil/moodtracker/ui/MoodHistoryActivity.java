@@ -39,7 +39,7 @@ public class MoodHistoryActivity extends AppCompatActivity {
             comments.add(mPreferences.getString("KEY_COMMENT" + i, ""));
         }
 
-        moodsAdapter = new MoodsAdapter(this, currentDay, moods, comments);
+        moodsAdapter = new MoodsAdapter(this, moods, comments);
         moodsRecyclerView.setAdapter(moodsAdapter);
     }
 }

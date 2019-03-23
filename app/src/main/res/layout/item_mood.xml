@@ -12,8 +12,7 @@
         android:id="@+id/left_frame_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="20"
-        android:orientation="horizontal"
+        android:layout_weight="0.2"
         android:padding="32dp"
         tools:background="@color/colorSuperHappy">
 
@@ -38,6 +37,6 @@
         android:id="@+id/right_frame_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="20"
+        android:layout_weight="0.8"
         android:background="#FFFFFF" />
 </LinearLayout>

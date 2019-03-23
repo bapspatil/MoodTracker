@@ -21,14 +21,13 @@ import com.bapspatil.moodtracker.util.Constants;
 import java.util.ArrayList;
 
 public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHolder> {
+
     private Context mContext;
-    private int mCurrentDay;
     private ArrayList<Integer> mMoods;
     private ArrayList<String> mComments;
 
-    public MoodsAdapter(Context context, int currentDay, ArrayList<Integer> moods, ArrayList<String> comments) {
+    public MoodsAdapter(Context context, ArrayList<Integer> moods, ArrayList<String> comments) {
         this.mContext = context;
-        this.mCurrentDay = currentDay;
         this.mMoods = moods;
         this.mComments = comments;
     }
@@ -43,11 +42,11 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
     @Override
     public void onBindViewHolder(@NonNull MoodViewHolder moodViewHolder, int i) {
         switch (i) {
-            case 1:
-                moodViewHolder.daysTextView.setText(R.string.yesterday);
-                break;
             case 0:
                 moodViewHolder.daysTextView.setText(R.string.today);
+                break;
+            case 1:
+                moodViewHolder.daysTextView.setText(R.string.yesterday);
                 break;
             default:
                 String daysAgoText = i + " " + mContext.getString(R.string.days_ago);
@@ -57,30 +56,31 @@ public class MoodsAdapter extends RecyclerView.Adapter<MoodsAdapter.MoodViewHold
         int mood = mMoods.get(i);
         LinearLayout.LayoutParams leftLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams rightLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
-        float weight;
+        float moodWeight;
         switch (mood) {
             case 0:
-                weight = 0.2f;
+                moodWeight = 0.2f;
                 break;
             case 1:
-                weight = 0.4f;
+                moodWeight = 0.4f;
                 break;
             case 2:
-                weight = 0.6f;
+                moodWeight = 0.6f;
                 break;
             case 3:
-                weight = 0.8f;
+                moodWeight = 0.8f;
                 break;
             case 4:
-                weight = 1.0f;
+                moodWeight = 1.0f;
                 break;
             default:
-                weight = 0.8f;
+                moodWeight = 0.8f;
         }
-        leftLayoutParams.weight = weight;
-        rightLayoutParams.weight = 1.0f - weight;
+        leftLayoutParams.weight = moodWeight;
+        rightLayoutParams.weight = 1.0f - moodWeight;
         moodViewHolder.leftFrameLayout.setLayoutParams(leftLayoutParams);
         moodViewHolder.rightFrameLayout.setLayoutParams(rightLayoutParams);
+
         moodViewHolder.leftFrameLayout.setBackgroundResource(Constants.moodColorsArray[mood]);
 
         final String comment = mComments.get(i);
