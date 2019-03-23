@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    Created by Bapusaheb Patil {@link https://bapspatil.com}
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="32dp"
+    tools:background="@color/colorSuperHappy">
+
+    <TextView
+        android:id="@+id/tv_days"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        tools:text="Five days ago" />
+
+    <ImageButton
+        android:id="@+id/btn_show_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+        android:contentDescription="@string/show_comment_button"
+        android:src="@drawable/ic_comment_black_48px" />
+</LinearLayout>
