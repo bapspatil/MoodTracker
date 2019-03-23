@@ -1,6 +1,10 @@
 package com.bapspatil.moodtracker;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -16,6 +20,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.Calendar;
+
 public class MoodActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private RelativeLayout parentRelativeLayout;
@@ -23,8 +29,8 @@ public class MoodActivity extends AppCompatActivity implements GestureDetector.O
     private ImageButton addCommentButton;
     private ImageButton moodHistoryButton;
     private GestureDetectorCompat mDetector;
-    private SharedPreferences mPreferences;
 
+    private SharedPreferences mPreferences;
     private int currentDay;
     private int currentMoodIndex;
     private String currentComment;
@@ -47,6 +53,8 @@ public class MoodActivity extends AppCompatActivity implements GestureDetector.O
         currentComment = mPreferences.getString(SharedPreferencesHelper.KEY_CURRENT_COMMENT, "");
 
         changeUiForMood(currentMoodIndex);
+
+        scheduleAlarm();
 
         addCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +79,14 @@ public class MoodActivity extends AppCompatActivity implements GestureDetector.O
                         })
                         .create();
                 alertDialog.show();
+            }
+        });
+
+        moodHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MoodActivity.this, MoodHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -125,11 +141,30 @@ public class MoodActivity extends AppCompatActivity implements GestureDetector.O
         return true;
     }
 
-    public void changeUiForMood(int moodIndex) {
+    private void changeUiForMood(int moodIndex) {
         moodImageView.setImageResource(Constants.moodImagesArray[moodIndex]);
         parentRelativeLayout.setBackgroundResource(Constants.moodColorsArray[moodIndex]);
         MediaPlayer mediaPlayer = MediaPlayer.create(this, Constants.moodSoundsArray[moodIndex]);
         mediaPlayer.start();
+    }
+
+    private void scheduleAlarm() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, UpdateDayReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if (alarmManager != null) {
+            alarmManager.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY,
+                    pendingIntent
+            );
+        }
     }
 
     @Override
