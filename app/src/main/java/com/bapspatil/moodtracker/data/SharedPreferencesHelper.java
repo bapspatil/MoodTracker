@@ -1,4 +1,4 @@
-package com.bapspatil.moodtracker;
+package com.bapspatil.moodtracker.data;
 /*
  ** Created by Bapusaheb Patil {@link https://bapspatil.com}
  */

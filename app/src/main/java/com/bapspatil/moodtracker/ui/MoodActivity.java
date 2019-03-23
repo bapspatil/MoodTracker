@@ -1,4 +1,4 @@
-package com.bapspatil.moodtracker;
+package com.bapspatil.moodtracker.ui;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -19,6 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.bapspatil.moodtracker.util.Constants;
+import com.bapspatil.moodtracker.R;
+import com.bapspatil.moodtracker.data.SharedPreferencesHelper;
+import com.bapspatil.moodtracker.receiver.UpdateDayReceiver;
 
 import java.util.Calendar;
 

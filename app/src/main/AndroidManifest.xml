@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".UpdateDayReceiver"
+            android:name=".receiver.UpdateDayReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
 
-        <activity android:name=".MoodHistoryActivity" />
-        <activity android:name=".MoodActivity">
+        <activity android:name=".ui.MoodHistoryActivity" />
+        <activity android:name=".ui.MoodActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

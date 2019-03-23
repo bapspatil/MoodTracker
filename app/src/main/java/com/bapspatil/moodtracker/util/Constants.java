@@ -1,7 +1,9 @@
-package com.bapspatil.moodtracker;
+package com.bapspatil.moodtracker.util;
 /*
  ** Created by Bapusaheb Patil {@link https://bapspatil.com}
  */
+
+import com.bapspatil.moodtracker.R;
 
 public class Constants {
 

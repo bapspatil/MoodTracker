@@ -1,4 +1,4 @@
-package com.bapspatil.moodtracker;
+package com.bapspatil.moodtracker.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.bapspatil.moodtracker.adapter.MoodsAdapter;
+import com.bapspatil.moodtracker.R;
+import com.bapspatil.moodtracker.data.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 

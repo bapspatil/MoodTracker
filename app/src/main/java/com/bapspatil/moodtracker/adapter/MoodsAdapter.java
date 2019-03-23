@@ -1,4 +1,4 @@
-package com.bapspatil.moodtracker;
+package com.bapspatil.moodtracker.adapter;
 /*
  ** Created by Bapusaheb Patil {@link https://bapspatil.com}
  */
@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bapspatil.moodtracker.R;
+import com.bapspatil.moodtracker.util.Constants;
 
 import java.util.ArrayList;
 
