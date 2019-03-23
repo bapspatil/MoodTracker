@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/colorHappy"
+    tools:context=".MoodActivity">
+
+    <ImageView
+        android:id="@+id/iv_mood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/mood_of_the_user"
+        tools:src="@drawable/smiley_happy" />
+
+    <ImageButton
+        android:id="@+id/btn_add_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:contentDescription="@string/add_comment_button"
+        android:src="@drawable/ic_note_add_black" />
+
+    <ImageButton
+        android:id="@+id/btn_mood_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:contentDescription="@string/mood_history_button"
+        android:src="@drawable/ic_history_black" />
+</RelativeLayout>
