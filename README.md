@@ -5,7 +5,7 @@ An Android app that lets you track your mood every day.
 
 ## Screenshots
 
-<img src="./art/screen0.png" width="35%">&ensp;<img src="./art/screen1.png" width="35%">
+<img src="./art/screen1.png" width="35%">&ensp;<img src="./art/screen0.png" width="35%">
 
 ## Libraries Used
 
