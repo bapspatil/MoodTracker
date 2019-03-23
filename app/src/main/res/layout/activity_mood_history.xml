@@ -9,5 +9,5 @@
         android:id="@+id/rv_moods"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listItem="@layout/item_mood"/>
+        tools:listItem="@layout/item_mood" />
 </RelativeLayout>
